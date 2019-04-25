@@ -1,6 +1,6 @@
 import sys
 from collections import Counter, OrderedDict
-
+from bitarray import bitarray
 
 class Node:
 
@@ -61,6 +61,21 @@ def huffman_encoding(data):
 
 
 def huffman_decoding(data,tree):
+    decoded_str = ""
+    root = list(tree.items())[0][0]
+    curr = root
+    for d in data:
+        if d == "0":
+            curr = curr.left
+        else:
+            curr = curr.right
+
+        if isinstance(curr,str):
+            decoded_str += curr
+            curr = root
+
+    return decoded_str
+
 
 
 
