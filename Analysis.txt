@@ -1,0 +1,50 @@
+Task0:
+Both First and Last records of text/calls can be found in O(1) Time complexity but in order to convert the reader into
+list, we'd need O(n) time where n is the number of entries. So, considering number of rows in texts.csv as m & number
+of rows in calls.csv as n - our run time for Task0 would be O(n+m)
+Additional space complexity is O(n+m) as we are storing all records from both csv files where n,m are as defined above
+
+Task1:
+Though adding to set is O(1), but we iterate over all the rows in texts.csv and calls.csv, our run time would be O(n+m)
+where n,m are the number of rows in calls.csv & texts.csv respectively.
+Additional space complexity is O(1).
+
+Task2:
+I have implemented the solutions with 4 different ways. Implementation 1, 2, 4 have run time complexity of O(n) with
+implementation #4 being slightly less optimal (bigger constants) as we iterate all phone records again.
+Implementation 3 has worst time complexity among all other implementations O(nlogn). I removed the code for reading of
+texts.csv file so as to improve time complexity. Additional Space complexity is O(n).
+Here, n refers to the number of unique phone numbers in calls.csv
+
+Task3:
+PART A: As we iterate over all the rows (say n) in calls.csv, the time complexity should be O(n).
+As `called_codes` would be a subset of entries in calls.csv, it's time complexity of converting a set to a list
+would be overshadowed by operation discussed earlier. All the implemented functions should also have runtime complexity of O(1).
+But sorting the `called_codes` would be O(ktlogk) where k is number of unique entries in `called_codes` and t is the longest areacode in `called_codes`
+So, final runtime complexity should be O(n+ktlogk) and additional space is O(1)
+
+PART B: The inclusion of part B just increased the constants for runtime complexity while maintaining it linear as we are
+iterating over all rows in calls.csv If we just implemented PART B, we wouldn't need to sort it. So time complexity
+for just Part B should be O(n) where n is the number of rows in calls.csv and additional space should be O(1).
+
+In absolute worst case, all `n` entries in calls.csv are made from a Bangalore fixed number and all calls are made to unique fixed line numbers
+whose area code have length equal to number of entries in calls.csv. In this worst case, the runtime would be O(n^2logn).
+
+Task 4:
+Set subtraction on line 18 involves time complexity O(min(a,b)) where a is the len(outgoing_call_nums) and b is the
+len(incoming_call_nums) (incoming_call_nums & outgoing_call_nums are sets and may be of different length)
+
+Looping over texts.csv would have run time complexity of O(m) where m is the number of rows in texts.csv. Checking if
+an entry on a particular row is in possible_telemarketers set is O(1). However, in the worst case, none of entries in
+texts.csv match entries in possible_telemarketers set. So, finally sorting it would be O(klogk) where k is the number of entries
+in `possible_telemarketers` (All numbers are of constant length 10)
+
+In absolute worst case, all the `n` outgoing calls in calls.csv are made by telemarketers and have unique phone numbers
+so none of texts are sent/received by telemarketers and no incoming call is received by a telemarketer. In this worst case, run time complexity would be O(n)
+where n is the number of rows in calls.csv
+
+
+
+
+
+
