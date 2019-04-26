@@ -1,9 +1,8 @@
 import sys
 from collections import Counter, OrderedDict
-from bitarray import bitarray
+
 
 class Node:
-
     def __init__(self,val):
         self.val = val
         self.left = None
@@ -45,6 +44,7 @@ def get_encoding_map_from_huffman_tree(tree):
     traverse_tree(tree, encoding_map, "")
     return encoding_map
 
+
 def generate_encoded_data(tree,data):
     encoding_map = get_encoding_map_from_huffman_tree(tree)
     # print(encoding_map)
@@ -53,16 +53,45 @@ def generate_encoded_data(tree,data):
         encoded_str += encoding_map[d]
     return encoded_str
 
+
 def huffman_encoding(data):
+    # Assert to check if input is a valid string
+    if not isinstance(data, str):
+        assert 1 == 0, "Input is not a valid string"
+
+    # Checks if input is a non-empty string
+    if data is None or len(data) == 0:
+        return "", None
+
     freq = OrderedDict(Counter(data))
     huffman_tree = generate_huffman_tree(freq)
-    encoded_str = generate_encoded_data(list(huffman_tree.items())[0][0], data)
+    root = list(huffman_tree.items())[0][0]
+
+    if isinstance(root, Node):
+        encoded_str = generate_encoded_data(root, data)
+
+    elif isinstance(root,str):
+        # handles the case when len(data) == 1
+        encoded_str = "1"
+    else:
+        # Unexpected error
+        assert 1 == 0, "Unexpected error"
+
     return encoded_str, huffman_tree
 
 
-def huffman_decoding(data,tree):
+def huffman_decoding(data, tree):
+
+    if tree is None:
+        return ""
+
     decoded_str = ""
     root = list(tree.items())[0][0]
+
+    if isinstance(root,str):
+        # Handles the case when string to encode is of len 1
+        return root
+
     curr = root
     for d in data:
         if d == "0":
@@ -75,8 +104,6 @@ def huffman_decoding(data,tree):
             curr = root
 
     return decoded_str
-
-
 
 
 if __name__ == "__main__":
