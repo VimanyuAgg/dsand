@@ -1,4 +1,4 @@
-## Problem 3: Dutch National Flag
+## Problem 4: Dutch National Flag
 
 #### Algorithm - Sort of QuickSort Patitioning
 This is a well-known problem and has variants of 2-way partitioning as well as 3-way partitioning. Current problem falls 
