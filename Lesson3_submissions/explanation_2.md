@@ -1,4 +1,4 @@
-## Problem 1: Search in a Rotated Sorted Array
+## Problem 2: Search in a Rotated Sorted Array
 
 #### Algorithm - Dual Binary Search
 As the input array is a rotated sorted array, we first find the index of the lowest value using `find_index_of_lowest` 
